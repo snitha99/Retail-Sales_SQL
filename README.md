@@ -1,6 +1,6 @@
 # Retail-Sales_SQL
 
-**Project Overview**
+## Project Overview
 
 **Project Title**: Retail Sales Analysis
 
@@ -8,7 +8,7 @@
 
  This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
 
-**Objectives**
+## Objectives
 
 **Data Cleaning**: Identify and remove any records with missing or null values.
 
@@ -16,7 +16,7 @@
 
 **Business Analysis**: Use SQL to answer specific business questions and derive insights from the sales data.
 
-**Project Structure**
+## Project Structure
 
 **NOTE**
 
@@ -47,7 +47,7 @@ insert into retail_sales1 SELECT * from retail_sales
 SELECT * FROM retail_sales1
 ```
 
-**Data Exploration & Cleaning**
+## Data Exploration & Cleaning
 
 **Record Count:** Determine the total number of records in the dataset.
 
@@ -92,18 +92,18 @@ transactions_id  is NULL OR
 SELECT count(*) FROM retail_sales1
 ```
 
-**Data Analysis & Findings**
+## Data Analysis & Findings
 
 The following SQL queries were developed to answer specific business questions:
 
-1.To retrieve all columns for sales made on '12-12-2022'
+**1.To retrieve all columns for sales made on '12-12-2022'**
 
 ```sql 
 SELECT * FROM retail_sales1 where sale_date = '12-12-2022';
 ```
 
 
-2.To retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 3 in the month of Dec-2022:
+**2.To retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 3 in the month of Dec-2022**
 
 ```sql
  SELECT category,sale_date,quantity from retail_sales1 
@@ -113,13 +113,13 @@ sale_date='11-2022' OR
 quantity >3
 ```
 
-3.To calculate the total sales (total_sale) for each category
+**3.To calculate the total sales (total_sale) for each category**
 
 ```sql 
 SELECT category,sum(total_sale)as net_sale FROM retail_sales1 GROUP BY category;
 ```
 
-4.To find the average age of customers who purchased items from the 'Beauty' category
+**4.To find the average age of customers who purchased items from the 'Beauty' category**
 
 ```sql
 SELECT Round(AVG(age)) as Avg_age FROM retail_sales1 
@@ -127,7 +127,7 @@ WHERE
 category='Beauty';
 ```
 
-5.To find all transactions where the total_sale is greater than 1000
+**5.To find all transactions where the total_sale is greater than 1000**
 
  ```sql
 SELECT * FROM retail_sales1
@@ -135,28 +135,28 @@ SELECT * FROM retail_sales1
  total_sale > 1000
 ```
 
- 6.To find the total number of transactions (transaction_id) made by each gender in each category
+ **6.To find the total number of transactions (transaction_id) made by each gender in each category**
 
 ```sql
  SELECT gender,category,count (*) as tot_transaction from retail_sales1 
 GROUP by gender,category
  ```
 
- 7.To find the top 5 customers based on the highest total sales 
+**7.To find the top 5 customers based on the highest total sales**
 
 ```sql
  SELECT customer_id,sum(total_sale) as total_sales FROM retail_sales1 
 GROUP by 1 ORDER by 2 DESC LIMIT 5;
 ```
 
-8.To find the number of unique customers who purchased items from each category
+**8.To find the number of unique customers who purchased items from each category**
 
 ```sql
  SELECT category,COUNT(DISTINCT customer_id)AS unique_cus FROM retail_sales1 
 GROUP BY category
 ```
 
-9.To calculate the average sale for each month. Find out best selling month in each year
+**9.To calculate the average sale for each month. Find out best selling month in each year**
 
 ```sql
 SELECT 
@@ -193,7 +193,7 @@ FROM hourly_sale
 GROUP BY shift;
 ```
 
-**Findings**
+## Findings
 
 - Customer Demographics: The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.
 
@@ -203,7 +203,7 @@ GROUP BY shift;
 
 - Customer Insights: The analysis identifies the top-spending customers and the most popular product categories.
 
-**Reports**
+## Reports
 
 - Sales Summary: A detailed report summarizing total sales, customer demographics, and category performance.
 
