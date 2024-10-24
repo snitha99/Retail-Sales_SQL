@@ -91,53 +91,70 @@ SELECT count(*) FROM retail_sales1
 
 The following SQL queries were developed to answer specific business questions:
 
--- 1.To retrieve all columns for sales made on '12-12-2022'
+1.To retrieve all columns for sales made on '12-12-2022'
 
-```sql SELECT * FROM retail_sales1 where sale_date = '12-12-2022';```
+```sql 
+SELECT * FROM retail_sales1 where sale_date = '12-12-2022';
+```
 
 
--- 2.To retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 3 in the month of Dec-2022:
+2.To retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 3 in the month of Dec-2022:
 
-```sql SELECT category,sale_date,quantity from retail_sales1 
+```sql
+ SELECT category,sale_date,quantity from retail_sales1 
 WHERE
 category='Clothing' OR
 sale_date='11-2022' OR
-quantity >3```
+quantity >3
+```
 
--- 3.To calculate the total sales (total_sale) for each category
+3.To calculate the total sales (total_sale) for each category
 
-```sql SELECT category,sum(total_sale)as net_sale FROM retail_sales1 GROUP BY category;```
+```sql 
+SELECT category,sum(total_sale)as net_sale FROM retail_sales1 GROUP BY category;
+```
 
--- 4.To find the average age of customers who purchased items from the 'Beauty' category
+4.To find the average age of customers who purchased items from the 'Beauty' category
 
-```sql SELECT Round(AVG(age)) as Avg_age FROM retail_sales1 
+```sql
+SELECT Round(AVG(age)) as Avg_age FROM retail_sales1 
 WHERE 
-category='Beauty';```
+category='Beauty';
+```
 
--- 5.To find all transactions where the total_sale is greater than 1000
+5.To find all transactions where the total_sale is greater than 1000
 
- ```sql SELECT * FROM retail_sales1
+ ```sql
+SELECT * FROM retail_sales1
  WHERE 
- total_sale > 1000```
+ total_sale > 1000
+```
 
--- 6.To find the total number of transactions (transaction_id) made by each gender in each category
+ 6.To find the total number of transactions (transaction_id) made by each gender in each category
 
-```sql SELECT gender,category,count (*) as tot_transaction from retail_sales1 
-GROUP by gender,category ```
+```sql
+ SELECT gender,category,count (*) as tot_transaction from retail_sales1 
+GROUP by gender,category
+ ```
 
--- 7.To find the top 5 customers based on the highest total sales 
+ 7.To find the top 5 customers based on the highest total sales 
 
-```sql SELECT customer_id,sum(total_sale) as total_sales FROM retail_sales1 
-GROUP by 1 ORDER by 2 DESC LIMIT 5;```
+```sql
+ SELECT customer_id,sum(total_sale) as total_sales FROM retail_sales1 
+GROUP by 1 ORDER by 2 DESC LIMIT 5;
+```
 
--- 8.To find the number of unique customers who purchased items from each category
+8.To find the number of unique customers who purchased items from each category
 
-```sql SELECT category,COUNT(DISTINCT customer_id)AS unique_cus FROM retail_sales1 
-GROUP BY category```
+```sql
+ SELECT category,COUNT(DISTINCT customer_id)AS unique_cus FROM retail_sales1 
+GROUP BY category
+```
 
--- 9.To calculate the average sale for each month. Find out best selling month in each year
+9.To calculate the average sale for each month. Find out best selling month in each year
 
-```sql SELECT 
+```sql
+SELECT 
     year,
     month,
     avg_sale
@@ -149,9 +166,10 @@ FROM
         RANK() OVER (PARTITION BY EXTRACT(YEAR FROM TO_DATE(sale_date, 'DD-MM-YYYY')) ORDER BY AVG(total_sale) DESC) AS rank
     FROM retail_sales1
     GROUP BY 1,2)AS t1
-    WHERE rank = 1;```
+    WHERE rank = 1;
+```
 
--- 10.To create each shift and number of orders Example Morning <12, Afternoon Between 12 & 17, Evening >17
+ 10.To create each shift and number of orders Example Morning <12, Afternoon Between 12 & 17, Evening >17
 
 ```sql
 WITH hourly_sale AS (
@@ -167,7 +185,8 @@ SELECT
     shift,
     COUNT(*) as total_orders    
 FROM hourly_sale
-GROUP BY shift;```
+GROUP BY shift;
+```
 
 
 
